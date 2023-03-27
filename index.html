@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <title>
+    Vocabulario CSS  </title>
+  <link href="happy.css" rel="stylesheet">
+
+  <style id="syntax-style">
+    /* UI higlight */
+.vocab-token:focus {
+  outline: none; }
+
+.vocab-hilite {
+  background: rgba(166, 226, 45, 0.07);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
+          box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.5); }
+
+.vocab-selected {
+  background: rgba(166, 226, 45, 0.16);
+  -webkit-box-shadow: 0px 0px 0px 1px white;
+          box-shadow: 0px 0px 0px 1px white; }
+
+.vocab-code {
+  white-space: pre;
+  /* Structure */
+  /* Colors */ }
+  .vocab-code .comment, .vocab-code .statement, .vocab-code .block {
+    display: block; }
+  .vocab-code .block > * {
+    margin-left: 1.5em; }
+  .vocab-code .comment {
+    color: #75715e; }
+  .vocab-code .at-keyword {
+    color: #f92772; }
+  .vocab-code .string {
+    color: #e6db74; }
+  .vocab-code .type-selector {
+    color: #f92772; }
+  .vocab-code .id-selector {
+    color: #f6aa10; }
+  .vocab-code .class-selector {
+    color: #a6e22d; }
+  .vocab-code .attribute-selector {
+    color: #e6db74; }
+  .vocab-code .pseudo-class {
+    color: #a6e22d; }
+  .vocab-code .pseudo-element {
+    color: #a6e22d; }
+  .vocab-code .property {
+    color: #66d9ef; }
+  .vocab-code .percentage, .vocab-code .unit {
+    color: #f92772; }
+  .vocab-code .number {
+    color: #be84ff; }
+  .vocab-code .keyword {
+    color: #66d9ef; }
+  .vocab-code .color {
+    color: #66d9ef; }
+  .vocab-code .arguments {
+    color: #be84ff; }
+  </style>
+
+  <script src="jquery-3.6.4.min.js"></script>
+  <script src="jquery.cookie.js"></script>
+  <script src="keymaster.js"></script>
+
+  <script id="vocab">
+    app = {};
+    app.vocab ={
+  "tokens": [
+    {
+      "name": "comment",
+      "text": "Comentario",
+      "url": ""
+    },
+    {
+      "name": "statement",
+      "text": "Declaración",
+      "url": ""
+    },
+    {
+      "name": "rule-set",
+      "text": "Conjunto de reglas",
+      "url": ""
+    },
+    {
+      "name": "at-rule",
+      "text": "Regla @",
+      "url": ""
+    },
+    {
+      "name": "at-keyword",
+      "text": "Palabra clave @",
+      "url": ""
+    },
+    {
+      "name": "media-query",
+      "text": "Media query (Requerimiento de medio)",
+      "url": ""
+    },
+    {
+      "name": "media-query-list",
+      "text": "Lista de media query",
+      "url": ""
+    },
+
+    {
+      "name": "media-type",
+      "text": "Tipo de medio",
+      "url": ""
+    },
+    {
+      "name": "expression",
+      "text": "Expresión",
+      "url": ""
+    },
+    {
+      "name": "media-feature",
+      "text": "Característica de medio",
+      "url": ""
+    },
+    {
+      "name": "block",
+      "text": "Bloque",
+      "url": ""
+    },
+    {
+      "name": "declaration-block",
+      "text": "Bloque de declaración",
+      "url": ""
+    },
+    {
+      "name": "selector",
+      "text": "Selector",
+      "url": ""
+    },
+    {
+      "name": "simple-selector",
+      "text": "Selector simple",
+      "url": ""
+    },
+    {
+      "name": "type-selector",
+      "text": "Selector de tipo",
+      "url": ""
+    },
+    {
+      "name": "universal-selector",
+      "text": "Selector universal",
+      "url": ""
+    },
+    {
+      "name": "id-selector",
+      "text": "Selector de ID",
+      "url": ""
+    },
+    {
+      "name": "class-selector",
+      "text": "Selector de clase",
+      "url": ""
+    },
+    {
+      "name": "attribute-selector",
+      "text": "Selector de atributo",
+      "url": ""
+    },
+    {
+      "name": "pseudo-class",
+      "text": "Pseudo-clase",
+      "url": ""
+    },
+    {
+      "name": "pseudo-element",
+      "text": "Pseudo-elemento",
+      "url": ""
+    },
+    {
+      "name": "combinator",
+      "text": "Combinador",
+      "url": ""
+    },
+    {
+      "name": "descendant-combinator",
+      "text": "Combinador de descendiente",
+      "url": ""
+    },
+    {
+      "name": "child-combinator",
+      "text": "Combinador de hijo",
+      "url": ""
+    },
+    {
+      "name": "adjacent-sibling-combinator",
+      "text": "Combinador de hermano adjacente",
+      "url": ""
+    },
+    {
+      "name": "general-sibling-combinator",
+      "text": "Combinador de hermano general",
+      "url": ""
+    },
+    {
+      "name": "declaration",
+      "text": "Declaración",
+      "url": ""
+    },
+    {
+      "name": "property",
+      "text": "Propiedad",
+      "url": ""
+    },
+    {
+      "name": "value",
+      "text": "Valor",
+      "url": ""
+    },
+    {
+      "name": "function",
+      "text": "Función",
+      "url": ""
+    },
+    {
+      "name": "keyword",
+      "text": "Palabra clave",
+      "url": ""
+    },
+    {
+      "name": "string",
+      "text": "Cadena de texto",
+      "url": ""
+    },
+    {
+      "name": "url",
+      "text": "URL",
+      "url": ""
+    },
+    {
+      "name": "number",
+      "text": "Número",
+      "url": ""
+    },
+    {
+      "name": "percentage",
+      "text": "Porcentaje",
+      "url": ""
+    },
+    {
+      "name": "length",
+      "text": "Longitud",
+      "url": ""
+    },
+    {
+      "name": "unit",
+      "text": "Unidad",
+      "url": ""
+    },
+    {
+      "name": "color",
+      "text": "Color",
+      "url": ""
+    },
+    {
+      "name": "vendor-prefix",
+      "text": "Prefijo de navegador",
+      "url": ""
+    }
+  ]
+}
+;app.vocabName = "css";app.locale = "es";  </script>
+
+  <script src="happy.js"></script>
+
+</head>
+<body class="">
+  <div class="vocab-layout">
+    <div class="vocab-modal">
+            <div class="vocab-help" style="">
+        <h1 class="vocab-title">
+          Vocabulario CSS        </h1>
+        <p class="vocab-credits">
+          Español:
+          <a href="http://twitter.com/cfinnberg">@cfinnberg</a>         </p>
+        <br>
+        <p class="vocab-help-text">Pulsa en el código o en la barra lateral para ver qué es que. Usa el tabulador para navegar con el teclado.</p>
+        <br>
+        <ul><li><a href=""></a></li></ul>        <button class="vocab-help-hide" title="Close help"></button>
+        <br>
+        <hr>
+        <br>
+        <a href="https://github.com/sakamies/vocabs/issues/new">Report an issue</a>        <br>
+        <a href="https://github.com/sakamies/vocabs/fork">Create a vocab or translation</a>        <br>
+        <br>
+        <a href="http://apps.workflower.fi/vocabs/">Vocabs</a> by
+        <a href="http://twitter.com/sakamies">@sakamies</a> / <a href="http://twitter.com/workflower">@workflower</a>        <br>
+      </div>
+    </div>
+    <div class="vocab-sidebar">
+      <div class="vocab-tokens-list-header">
+        <h1 class="vocab-title">
+          Vocabulario CSS        </h1>
+      </div>
+      <button class="vocab-help-show">?</button>
+
+      <ul class="vocab-tokens-list"><li><a class="vocab-token comment" href="">Comentario</a></li><li><a class="vocab-token statement" href="">Declaración</a></li><li><a class="vocab-token rule-set" href="">Conjunto de reglas</a></li><li><a class="vocab-token at-rule" href="">Regla @</a></li><li><a class="vocab-token at-keyword" href="">Palabra clave @</a></li><li><a class="vocab-token media-query" href="">Media query (Requerimiento de medio)</a></li><li><a class="vocab-token media-query-list" href="">Lista de media query</a></li><li><a class="vocab-token media-type" href="">Tipo de medio</a></li><li><a class="vocab-token expression" href="">Expresión</a></li><li><a class="vocab-token media-feature" href="">Característica de medio</a></li><li><a class="vocab-token block" href="">Bloque</a></li><li><a class="vocab-token declaration-block" href="">Bloque de declaración</a></li><li><a class="vocab-token selector" href="">Selector</a></li><li><a class="vocab-token simple-selector" href="">Selector simple</a></li><li><a class="vocab-token type-selector" href="">Selector de tipo</a></li><li><a class="vocab-token universal-selector" href="">Selector universal</a></li><li><a class="vocab-token id-selector" href="">Selector de ID</a></li><li><a class="vocab-token class-selector" href="">Selector de clase</a></li><li><a class="vocab-token attribute-selector" href="">Selector de atributo</a></li><li><a class="vocab-token pseudo-class" href="">Pseudo-clase</a></li><li><a class="vocab-token pseudo-element" href="">Pseudo-elemento</a></li><li><a class="vocab-token combinator" href="">Combinador</a></li><li><a class="vocab-token descendant-combinator" href="">Combinador de descendiente</a></li><li><a class="vocab-token child-combinator" href="">Combinador de hijo</a></li><li><a class="vocab-token adjacent-sibling-combinator" href="">Combinador de hermano adjacente</a></li><li><a class="vocab-token general-sibling-combinator" href="">Combinador de hermano general</a></li><li><a class="vocab-token declaration" href="">Declaración</a></li><li><a class="vocab-token property" href="">Propiedad</a></li><li><a class="vocab-token value" href="">Valor</a></li><li><a class="vocab-token function" href="">Función</a></li><li><a class="vocab-token keyword" href="">Palabra clave</a></li><li><a class="vocab-token string" href="">Cadena de texto</a></li><li><a class="vocab-token url" href="">URL</a></li><li><a class="vocab-token number" href="">Número</a></li><li><a class="vocab-token percentage" href="">Porcentaje</a></li><li><a class="vocab-token length" href="">Longitud</a></li><li><a class="vocab-token unit" href="">Unidad</a></li><li><a class="vocab-token color" href="">Color</a></li><li><a class="vocab-token vendor-prefix" href="">Prefijo de navegador</a></li></ul>
+    </div>
+    <div class="vocab-content">
+      <code class="vocab-code"><br><span class="comment">/* Styles */</span><br><span class="statement at-rule import"><span class="at-keyword">@import</span>&nbsp;<span class="string">"extra.css"</span>;<br></span>&nbsp;<span class="statement rule-set"><span class="selector"><span class="simple-selector type-selector">ul</span><span class="combinator descendant-combinator">&nbsp;</span><span class="simple-selector type-selector">li</span></span><span class="block declaration-block">{<br><span class="declaration"><span class="property">list-style</span>:&nbsp;<span class="value"><span class="keyword">square</span></span>;<br></span><span class="declaration"><span class="property">margin</span>:&nbsp;<span class="value"><span class="length"><span class="number">2</span><span class="unit">em</span></span>&nbsp;<span class="percentage"><span class="number">20</span><span>%</span></span>&nbsp;<span class="length"><span class="number">15</span><span class="unit">px</span></span>&nbsp;<span class="number">0</span></span>;<br></span>}</span></span>&nbsp;<span class="statement rule-set"><span class="selector"><span class="simple-selector id-selector">#content</span></span><span class="block declaration-block">{<br><span class="declaration"><span class="property"><span class="vendor-prefix">-webkit-</span><span>font-smoothing</span></span>:&nbsp;<span class="value"><span class="keyword">antialiased</span></span>;<br></span><span class="declaration"><span class="property">background</span>:&nbsp;<span class="value"><span class="function"><span class="function-name">url</span>(<span class="arguments"><span class="agrument"><span class="url">img/gradient.png</span></span></span>)</span></span>;<br></span><span class="declaration"><span class="property">background</span>:&nbsp;<span class="value"><span class="function"><span class="function-name">linear-gradient</span>(<span class="arguments"><span class="argument"><span class="keyword">to</span>&nbsp;<span class="keyword">bottom</span></span>,&nbsp;<span class="argument"><span class="keyword color">red</span></span>,&nbsp;<span class="argument"><span class="color">rgba(255,0,0,0)</span></span></span><span>)</span></span></span>;<br></span>}</span></span>&nbsp;<span class="statement at-rule rule-set media-query"><span class="at-keyword">@media</span>&nbsp;<span class="media-query-list"><span class="keyword">only</span>&nbsp;<span class="media-type">screen</span>&nbsp;<span class="keyword">and</span>&nbsp;<span class="expression">(<span class="media-feature">min-width</span>:&nbsp;<span class="value"><span class="length"><span class="number">35</span><span class="unit">em</span></span></span>)</span></span><span class="block">{<br><span class="statement rule-set"><span class="selector"><span class="simple-selector id-selector">#content</span></span><span class="block declaration-block">{<br><span class="declaration"><span class="property">width</span>:&nbsp;<span class="value"><span class="percentage"><span class="number">50</span><span>%</span></span></span>;<br></span>}</span></span>}</span></span>&nbsp;<span class="statement rule-set"><span class="selector"><span class="simple-selector class-selector">.item</span>&nbsp;<span class="combinator adjacent-sibling-combinator">+</span>&nbsp;<span class="simple-selector class-selector">.item</span></span><span>,<br></span><span class="selector"><span class="simple-selector class-selector">.item</span>&nbsp;<span class="combinator general-sibling-combinator">~</span>&nbsp;<span class="simple-selector class-selector">.item</span></span><span class="block declaration-block">{<br><span class="declaration"><span class="property">margin-left</span>:&nbsp;<span class="value"><span class="length"><span class="number">-15</span><span class="unit">px</span></span></span>;<br></span>}</span></span>&nbsp;<span class="statement rule-set"><span class="selector"><span class="simple-selector id-selector">#buttons</span><span class="combinator descendant-combinator">&nbsp;</span><span class="simple-selector class-selector">.lotsofcontent</span></span><span>,<br></span><span class="selector"><span class="simple-selector id-selector">#buttons</span>&nbsp;<span class="combinator child-combinator">&gt;</span>&nbsp;<span class="simple-selector universal-selector">*</span></span><span>,<br></span><span class="selector"><span class="simple-selector type-selector">input</span><span class="simple-selector attribute-selector">[type=submit]</span></span><span class="block declaration-block">{<br><span class="declaration"><span class="property">border-radius</span>:&nbsp;<span class="value"><span class="length"><span class="number">.3</span><span class="unit">rem</span></span></span>;<br></span>}</span></span>&nbsp;<span class="statement rule-set"><span class="selector"><span class="simple-selector type-selector">a</span><span class="simple-selector pseudo-class">:hover</span></span><span>,<br></span><span class="selector"><span class="simple-selector type-selector">a</span><span class="simple-selector pseudo-class">:focus</span></span><span class="block declaration-block">{<br><span class="declaration"><span class="property">color</span>:&nbsp;<span class="value"><span class="keyword color">green</span></span>;<br></span>}</span></span>&nbsp;<span class="statement rule-set"><span class="selector"><span class="simple-selector type-selector">blockquote</span><span class="pseudo-element">::before</span></span><span>,<br></span><span class="selector"><span class="simple-selector type-selector">blockquote</span><span class="pseudo-element">::after</span></span><span class="block declaration-block">{<br><span class="declaration"><span class="property">content</span>:&nbsp;<span class="value"><span class="string">"\201d"</span></span>;<br></span>}</span></span>&nbsp;
+</code>
+    </div>
+  </div>
+
+</body>
+</html>
